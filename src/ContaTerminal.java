@@ -5,11 +5,16 @@ public class ContaTerminal {
     public static void main(String[] args) {
         Scanner sn = new Scanner(System.in);
         String nomeCliente = "", agencia = "";
-
+        double saldo;
+        int numeroAgencia;
         System.out.println("----BANCO----");
-        System.out.print("INFORME O NÚMERO DA AGÊNCIA: ");
-        int numeroAgencia = sn.nextInt();
-        sn.nextLine(); // Consumir a quebra de linha pendente
+
+        do {
+            System.out.print("INFORME O NÚMERO DA AGÊNCIA: ");
+            numeroAgencia = sn.nextInt();
+        }while(numeroAgencia < 1000);
+
+         sn.nextLine(); // Consumir a quebra de linha pendente
 
         try {
             do {
@@ -22,9 +27,11 @@ public class ContaTerminal {
                 nomeCliente = sn.nextLine();
             } while (nomeCliente.equals(""));
 
-            System.out.print("INFORME O SEU SALDO: R$");
-            double saldo = sn.nextDouble();
-
+            do {
+                System.out.print("INFORME O SEU SALDO: R$");
+                 saldo = sn.nextDouble();
+            }
+            while(saldo <= 0);
             String mensagem = "Olá " + nomeCliente +
                     ", obrigado por criar uma conta em nosso banco, sua agência é " + numeroAgencia +
                     ", conta " + agencia + ", e seu saldo já está disponível para saque: R$" + saldo;
